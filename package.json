@@ -1,0 +1,37 @@
+{
+  "name": "pragma-api",
+  "version": "1.0.0",
+  "description": "javascript sdk for consuming web api from Pragma Products On Key",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test",
+    "audit": "gulp clean:coverage && gulp audit:all && gulp test:coverage && gulp build:all && gulp test:e2e && gulp test:generate-report && gulp serve:coverage-report",
+    "test:ui": "gulp build:all && gulp test:e2e",
+    "build": "gulp build:all",
+    "watch:ui": "gulp build:all && gulp watch:ui",
+    "watch:all": "gulp build:all && gulp watch:all",
+    "run": "gulp build:all && gulp serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/InquisitorJax/pragma-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/InquisitorJax/pragma-api/issues"
+  },
+  "homepage": "https://github.com/InquisitorJax/pragma-api#readme",
+  "devDependencies": {
+    "build-utilities": "0.0.136"
+  },
+  "jspm": {
+    "dependencies": {
+      "aurelia-bootstrapper": "npm:aurelia-bootstrapper@^1.0.0",
+      "aurelia-fetch-client": "npm:aurelia-fetch-client@^1.1.2",
+      "aurelia-framework": "npm:aurelia-framework@^1.0.1"
+    },
+    "devDependencies": {}
+  }
+}

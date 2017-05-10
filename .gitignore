@@ -1,0 +1,8 @@
+
+node_modules
+jspm_packages
+styles
+app
+coverage
+chromedriver.exe
+.idea
