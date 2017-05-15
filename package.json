@@ -24,7 +24,11 @@
   },
   "homepage": "https://github.com/InquisitorJax/pragma-api#readme",
   "devDependencies": {
-    "build-utilities": "0.0.136"
+    "build-utilities": "0.0.136",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "mocha": "^3.4.1",
+    "sinon": "^2.2.0"
   },
   "jspm": {
     "dependencies": {
