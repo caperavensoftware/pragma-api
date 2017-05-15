@@ -24,7 +24,8 @@ export class ResourceMetadataCache {
 
     setRegistry(registry) {
         for (let item of registry) {
-            this.registryCache.set(item.properties.Name, item);
+            const resourceName = item.properties.ResourceName;
+            this.registryCache.set(resourceName, item);
         }
     }
 

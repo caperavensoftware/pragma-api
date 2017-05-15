@@ -60,6 +60,11 @@ export class ResourceApi extends ApiBase {
                 })
                 .then((getMetadata) => {
                     const resourceLink = self.findResourceAction(getMetadata, defaultAction, ResourceDefaultActions.TYPE_DEFAULT_ACTION());
+                    if (!resourceLink) {
+                        console.log('No default action for get resource could be found - just returning the get meta data');
+                        resolve(getMetadata);
+                    }
+
                     const resourceName = resourceLink.resource;
                     self.getResourceMetadata(resourceName)
                         .then((writeMetadata) => {
@@ -139,6 +144,35 @@ export class ResourceApi extends ApiBase {
         });
     }
 
+    getResourceListData(name, query) {
+        const self = this;
+
+        return new Promise( (resolve, reject) => {
+
+            this.getResourceMetadata(name)
+                .then(metaData => {
+                    let route = metaData.endpoint.href;
+                    const replaceId = '{id:long}';
+                    route = route.replace(replaceId, '');
+                    const serviceRoute = ApiBase.HOSTURL_GET().concat(route);
+
+                    const httpClient = self.createHttpClient();
+
+                    httpClient.fetch(serviceRoute)
+                        .then(response => {
+                            response.json().then((data) => {
+                                console.log("completed ResourceApi.getResourceListData");
+                                resolve(data);
+                            });
+                        });
+                }).catch(error => {
+                console.log(`error in ResourcesApi.getResourceListData call: ${error}`);
+                reject(error);
+            });
+        });
+    }
+
+
     getResourceItemData(name, id) {
         const self = this;
 
@@ -150,11 +184,6 @@ export class ResourceApi extends ApiBase {
                     const replaceId = '{id:long}';
                     route = route.replace(replaceId, id);
                     const serviceRoute = ApiBase.HOSTURL_GET().concat(route);
-
-                    return serviceRoute;
-
-                })
-                .then(serviceRoute => {
                     const httpClient = self.createHttpClient();
 
                     httpClient.fetch(serviceRoute)
@@ -164,12 +193,10 @@ export class ResourceApi extends ApiBase {
                                 resolve(data);
                             });
                         });
-
-                })
-                .catch(error => {
-                    console.log(`error in ResourcesApi.getResourceItemData call: ${error}`);
-                    reject(error);
-                });
+                }).catch(error => {
+                console.log(`error in ResourcesApi.getResourceItemData call: ${error}`);
+                reject(error);
+            });
 
         });
 

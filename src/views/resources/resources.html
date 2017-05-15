@@ -1,0 +1,17 @@
+<template>
+    <div class="main-toolbar" style="margin-left: 1em">
+        <h2>Resource Registry</h2>
+
+    </div>
+    <div id="body" style="margin: 5em">
+        <label>Number of resources: ${resourceList.length}</label>
+        <div repeat.for="resource of resourceList" style="margin-top: 2em">
+            <div >
+                <span />
+                <button type="button" click.delegate="$parent.viewResourceList(resource.properties.ResourceName)">List</button>
+                <span >${resource.properties.ResourceName} </span>
+                <span />
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,3 +1,28 @@
 <template>
-    <h1>Welcome</h1>
+    <div class="main-toolbar" style="margin-left: 1em">
+        <h2>On Key Api</h2>
+
+        <div class="context-toolbar" style="margin-top: 3em">
+            <button  click.delegate="navigateMetadata()">
+                <svg width="25" height="25" viewBox="186 68 25 25" xmlns="http://www.w3.org/2000/svg"><g opacity=".8" fill="none" fill-rule="evenodd">
+                    <path d="M187 69h24v24h-24z"/>
+                    <path d="M207 73h-16c-1.1 0-1.99.9-1.99 2L189 87c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V75c0-1.1-.9-2-2-2zm-5 14h-11v-4h11v4zm0-5h-11v-4h11v4zm5 5h-4v-9h4v9z" fill="#3B4753"/>
+                </g>
+                </svg>
+            </button>
+            <label style="margin-left: 1em">Resource Metadata</label>
+        </div>
+
+        <div class="context-toolbar" style="margin-top: 3em">
+            <button  click.delegate="navigateResource()">
+                <svg width="25" height="25" viewBox="186 68 25 25" xmlns="http://www.w3.org/2000/svg"><g opacity=".8" fill="none" fill-rule="evenodd">
+                    <path d="M187 69h24v24h-24z"/>
+                    <path d="M207 73h-16c-1.1 0-1.99.9-1.99 2L189 87c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V75c0-1.1-.9-2-2-2zm-5 14h-11v-4h11v4zm0-5h-11v-4h11v4zm5 5h-4v-9h4v9z" fill="#3B4753"/>
+                </g>
+                </svg>
+            </button>
+            <label style="margin-left: 1em">Staff Member Resource</label>
+        </div>
+    </div>
+    <div id="body"></div>
 </template>

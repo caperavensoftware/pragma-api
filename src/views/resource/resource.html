@@ -1,0 +1,36 @@
+<template>
+    <div id="header" style="margin: 5em">
+
+        <h2>Resource Metadata for: ${resourceMetadata.name}</h2>
+
+        <div>
+            <span >Type: ${resourceMetadata.type} </span>
+            <div>
+                <span >Properties: </span>
+            </div>
+        </div>
+        <div >
+            <span repeat.for="property of resourceMetadata.properties" >${property.name} ;</span>
+        </div>
+        <div>
+            <a href="${resourceMetadata.endpoint.href}">GET Link </a>
+        </div>
+        <div />
+    </div>
+
+    <div id="body" style="margin: 5em">
+        <h2>Resource Data for: ${model.type}</h2>
+        <div />
+        <div>
+            <span >Code: ${model.properties.Code} </span>
+        </div>
+        <div>
+            <input value.bind="model.properties.Code"></input>
+        </div>
+        <div>
+            <button type="button" click.delegate="saveModel()">Save</button>
+        </div>
+        <div />
+    </div>
+
+</template>

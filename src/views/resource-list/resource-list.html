@@ -1,0 +1,22 @@
+<template>
+    <div id="header" style="margin: 5em">
+
+        <div class="main-toolbar" style="margin-left: 1em">
+            <h2>Resource List for: ${resourceName}</h2>
+        </div>
+
+        <div>
+            <span >Count: ${resourceList.length} (up to max 20 records)</span>
+        </div>
+        <div >
+            <span repeat.for="resource of resourceList" >${resource.properties.id} ;</span>
+        </div>
+        <div>
+            <input value.bind="selectedId"/>
+        </div>
+        <div>
+            <button type="button" click.delegate="viewResource()">View</button>
+        </div>
+        <div />
+    </div>
+</template>
