@@ -66,14 +66,6 @@ export class OnKeyApi extends ApiBase {
         });
     }
 
-    // generateModelFromMetadata(metadata) {
-    //     let retModel = {};
-    //     for (let property of metadata.properties) {
-    //         retModel[property.name] = null;
-    //     }
-    //     return retModel;
-    // }
-
     saveResourceData(resourceName, resourceData, id) {
         return this.resources.saveResourceItemData(resourceName, resourceData, id);
     }

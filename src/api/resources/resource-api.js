@@ -172,7 +172,6 @@ export class ResourceApi extends ApiBase {
         });
     }
 
-
     getResourceItemData(name, id) {
         const self = this;
 

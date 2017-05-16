@@ -79,7 +79,7 @@ describe("OnKeyApiTests", () => {
 
     });
 
-    it("getResourceAll_callResourceApi_returnsValueFromResourceApi", function() {
+    it("getResource_callResourceApi_returnsDataAndSchemaFromResourceApi", function() {
         // Arrange
         const metadataStub = ['Star Wars', 'The Matrix', 'Lord of the Rings'];
         const itemDataStub = ['Brave', 'Cars', 'The Incredibles'];
@@ -104,7 +104,39 @@ describe("OnKeyApiTests", () => {
 
     });
 
+    it("getResourceList_callResourceApi_returnsValuesFromResourceApi", () => {
+        // Arrange
+        let stubbedValues = ['Star Wars', 'The Matrix', 'Forrest Gump'];
+        let listStub = { items: stubbedValues};
+        let promise = new Promise(resolve => { resolve(listStub); });
+        const resourceName = "BatmanResource";
+        const query = "?BadGuy=TheRiddler";
+        resourceStub.getResourceListData.withArgs(resourceName, query).returns(promise);
 
+        //Act
+        let promiseResponse = api.getResourceList(resourceName, query);
+
+        //assert
+        assert(resourceStub.getResourceListData.calledOnce, "getResourceListData should be called once");
+        return expect(promiseResponse).to.eventually.equal(listStub, "Expected correct list values");
+
+    });
+
+    it("saveResourceData_callResourceApi_CallsResourceApi", () => {
+        // Arrange
+        let promise = new Promise(resolve => { resolve(true); });
+        const resourceName = "BatmanResource";
+        const resourceData = { name: "Bruce Wayne"};
+        const id = 827329;
+        resourceStub.saveResourceItemData.withArgs(resourceName, resourceData, id).returns(promise);
+
+        //Act
+        let promiseResponse = api.saveResourceData(resourceName, resourceData, id);
+
+        //assert
+        assert(resourceStub.saveResourceItemData.calledOnce, "saveResourceItemData should be called once");
+        return expect(promiseResponse).to.eventually.equal(true, "Expected correct list values");
+    });
 });
 
 

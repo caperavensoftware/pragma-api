@@ -127,7 +127,6 @@ describe("OnKeyApiTests", () => {
         assert.deepEqual(updateCodeProperty, mergedCodeProperty);
     });
 
-
     it('getResourceMetadata_registryNotYetPopulated_callsGetRegistryFirst', () => {
         //ARRANGE
         let getResourceRegistryStub = sandbox.stub(api, 'getResourceRegistry').returns(Promise.resolve());
@@ -149,7 +148,7 @@ describe("OnKeyApiTests", () => {
     });
 
     it('getResourceActionMetadata_fetchMergedMetadataForEdit_returnsMergedUpdateAndGet', () => {
-        //TODO: Complete
+
         //ARRANGE
         const resourceName = "GOLD";
         const updateResourceName = "UpdateGold";
@@ -189,6 +188,54 @@ describe("OnKeyApiTests", () => {
 
         //ASSERT
         assert.deepEqual(patchResourceAction, findResponse);
+    });
+
+    it('getResourceItemData_fetchResourceData_returnDataForItem', () => {
+
+        //ARRANGE
+        const resourceName = "GOLD";
+        const id = "4321";
+
+        let getResourceMetadataStub = sandbox.stub(api, 'getResourceMetadata');
+        const metadataResponse = ResourceApiStubs.GET_METADATA();
+        getResourceMetadataStub.withArgs(resourceName).returns(Promise.resolve(metadataResponse));
+        const itemData = ResourceApiStubs.GET_DATA();
+        const fetchPromiseResponse = HttpStubs.PROMISE_RESPONSE(itemData);
+        httpClientStub.fetch.returns(fetchPromiseResponse);
+
+        //ACT
+        const promiseResponse = api.getResourceItemData(resourceName, id);
+
+        //ASSERT
+        return expect(promiseResponse).to.eventually.equal(itemData, "Expected correct data response")
+            .then( () => {
+                assert(getResourceMetadataStub.calledWith(resourceName));
+                assert(httpClientStub.fetch.calledOnce);
+            });
+    });
+
+    it('getReourceListData_fetchAllItemsForResource_returnsListOfItems', () => {
+
+        //ARRANGE
+        const resourceName = "GOLD";
+
+        let getResourceMetadataStub = sandbox.stub(api, 'getResourceMetadata');
+        const metadataResponse = ResourceApiStubs.GET_METADATA();
+        getResourceMetadataStub.withArgs(resourceName).returns(Promise.resolve(metadataResponse));
+        const listData = ResourceApiStubs.GET_LIST_DATA();
+        const fetchPromiseResponse = HttpStubs.PROMISE_RESPONSE(listData);
+        httpClientStub.fetch.returns(fetchPromiseResponse);
+        const query = { test: "query"};
+
+        //ACT
+        const promiseResponse = api.getResourceItemData(resourceName, query);
+
+        //ASSERT
+        return expect(promiseResponse).to.eventually.equal(listData, "Expected correct list data response")
+            .then( () => {
+                assert(getResourceMetadataStub.calledWith(resourceName));
+                assert(httpClientStub.fetch.calledOnce);
+            });
     });
 
 });
