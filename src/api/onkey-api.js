@@ -74,14 +74,14 @@ export class OnKeyApi extends ApiBase {
         return this.resources.getResourceItemData(resourceName, id);
     }
 
-    getTemplate(resourceName, profileId) {
-        //TODO: Implement
-        return null;
-    }
-
-    saveTemplate(resourceName, templateName, profileId) {
-        //TODO: Implement
-        return null;
-    }
+    // getTemplate(resourceName, profileId) {
+    //     //TODO: Implement
+    //     return null;
+    // }
+    //
+    // saveTemplate(resourceName, templateName, profileId) {
+    //     //TODO: Implement
+    //     return null;
+    // }
 
 }

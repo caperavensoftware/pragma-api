@@ -6,7 +6,7 @@ let chai = require("chai");
 let chaiAsPromised = require("chai-as-promised");
 
 
-describe("OnKeyApiTests", () => {
+describe("OnKeyApi Tests", () => {
     const sandbox = sinon.sandbox.create();
     let api;
     let resourceStub;

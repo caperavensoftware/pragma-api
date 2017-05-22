@@ -17,7 +17,6 @@ export class ResourceApi extends ApiBase {
 
         if (this.cache.registryPopulated()) {
             return new Promise(function (resolve) {
-                console.log("ResourceApi: registry from CACHE");
                 resolve(self.cache.registryItems());
             });
         }
@@ -30,14 +29,11 @@ export class ResourceApi extends ApiBase {
                 httpClient.fetch(serviceRoute)
                     .then(response => {
                         response.json().then((resourceList) => {
-                            console.log("completed ResourceApi.getResourceRegistry");
                             self.cache.setRegistry(resourceList.items);
-                            console.log("ResourceApi: registry from SERVER");
                             resolve(resourceList.items);
                         });
                     })
                     .catch(error => {
-                        console.log(`error in ResourcesApi.getResources call: ${error}`);
                         reject(error);
                     });
             });
@@ -61,7 +57,6 @@ export class ResourceApi extends ApiBase {
                 .then((getMetadata) => {
                     const resourceLink = self.findResourceAction(getMetadata, defaultAction, ResourceDefaultActions.TYPE_DEFAULT_ACTION());
                     if (!resourceLink) {
-                        console.log('No default action for get resource could be found - just returning the get meta data');
                         resolve(getMetadata);
                     }
 
@@ -112,7 +107,6 @@ export class ResourceApi extends ApiBase {
 
             if (metadata) {
                 return new Promise(function (resolve) {
-                    console.log("ResourceApi: metadata from CACHE");
                     resolve(metadata);
                 });
             }
@@ -129,13 +123,11 @@ export class ResourceApi extends ApiBase {
                     httpClient.fetch(serviceRoute)
                         .then(response => {
                             response.json().then((metadata) => {
-                                console.log("completed ResourceApi.getResourceMetadata");
                                 self.cache.set(name, metadata);
                                 resolve(metadata);
                             });
                         })
                         .catch(error => {
-                            console.log(`error in ResourcesApi.getResourceMetadata call: ${error}`);
                             reject(error);
                         });
                     ;
@@ -161,12 +153,10 @@ export class ResourceApi extends ApiBase {
                     httpClient.fetch(serviceRoute)
                         .then(response => {
                             response.json().then((data) => {
-                                console.log("completed ResourceApi.getResourceListData");
                                 resolve(data);
                             });
                         });
                 }).catch(error => {
-                console.log(`error in ResourcesApi.getResourceListData call: ${error}`);
                 reject(error);
             });
         });
@@ -188,12 +178,10 @@ export class ResourceApi extends ApiBase {
                     httpClient.fetch(serviceRoute)
                         .then(response => {
                             response.json().then((data) => {
-                                console.log("completed ResourceApi.getResourceItemData");
                                 resolve(data);
                             });
                         });
                 }).catch(error => {
-                console.log(`error in ResourcesApi.getResourceItemData call: ${error}`);
                 reject(error);
             });
 
@@ -204,7 +192,6 @@ export class ResourceApi extends ApiBase {
     saveResourceItemData(resourceName, resourceData, id) {
         //TODO: Implement
         return new Promise(function (resolve) {
-            console.log("ResourceApi: saveResourceItemData");
             resolve(null);
         });
     }

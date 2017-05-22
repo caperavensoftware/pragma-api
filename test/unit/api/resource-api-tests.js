@@ -10,7 +10,7 @@ import {HttpStubs} from "./Stubs/http-stubs.js";
 let chai = require("chai");
 let chaiAsPromised = require("chai-as-promised");
 
-describe("OnKeyApiTests", () => {
+describe("ResourceApi Tests", () => {
     const sandbox = sinon.sandbox.create();
     let api;
     let cacheStub;
