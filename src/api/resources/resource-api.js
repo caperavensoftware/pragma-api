@@ -1,6 +1,6 @@
 import {ApiBase} from "../api-base";
 import {ResourceMetadataCache} from "./resource-metadata-cache";
-import {inject} from 'aurelia-framework';
+import {inject} from "aurelia-framework";
 import {HttpClientFactory} from "./../http/http-client-factory.js";
 import {ResourceDefaultActions} from "./resource-actions";
 
@@ -90,8 +90,8 @@ export class ResourceApi extends ApiBase {
 
     findResourceAction(metadata, method, type) {
         let action = null;
-        if (metadata != null && metadata.actions.length > 0) {
-            action = metadata.actions.find(x => x.method == method && x.type == type);
+        if (metadata !== null && metadata.actions.length > 0) {
+            action = metadata.actions.find(x => x.method === method && x.type === type);
         }
         return action;
     }
@@ -130,7 +130,6 @@ export class ResourceApi extends ApiBase {
                         .catch(error => {
                             reject(error);
                         });
-                    ;
                 });
             }
         });

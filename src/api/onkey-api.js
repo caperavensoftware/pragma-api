@@ -43,14 +43,14 @@ export class OnKeyApi extends ApiBase {
         let resources = this.resources;
         return new Promise( (resolve, reject) => {
             //TODO MJ: delete scenario??
-            const defaultAction = id == null ? ResourceDefaultActions.METHOD_POST() : ResourceDefaultActions.METHOD_PATCH();
+            const defaultAction = id === null ? ResourceDefaultActions.METHOD_POST() : ResourceDefaultActions.METHOD_PATCH();
             resources.getResourceActionMetadata(resourceName, defaultAction)
                 .then((response) => {
                     return response;
                 })
                 .then((metadata) => {
                     //NOTE: model will be empty if id is empty (TODO: need to generate empty model??)
-                    if (defaultAction == ResourceDefaultActions.METHOD_PATCH()) {
+                    if (defaultAction === ResourceDefaultActions.METHOD_PATCH()) {
                         resources.getResourceItemData(resourceName, id)
                             .then((model) => {
                                 resolve({model: model, metadata: metadata});
