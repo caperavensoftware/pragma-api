@@ -1,7 +1,7 @@
 const gulp = require("gulp");
 const Publish = require("build-utilities/publish");
 
-gulp.task('publish', ['build:all', 'build:dist'], function() {
+gulp.task('build:publish', ['build:all', 'build:dist'], function() {
     const publish = new Publish();
 
     publish.publish([
@@ -15,6 +15,18 @@ gulp.task('publish', ['build:all', 'build:dist'], function() {
         },
         {
             src: ["distribute/systemjs/api/**/*.*"],
+            dest: "publish/systemjs"
+        },
+        {
+            src: ["distribute/amd/index.js"],
+            dest: "publish/amd"
+        },
+        {
+            src: ["distribute/commonjs/index.js"],
+            dest: "publish/commonjs"
+        },
+        {
+            src: ["distribute/systemjs/index.js"],
             dest: "publish/systemjs"
         }
     ]);
